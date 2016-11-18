@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/interview_test/!svn/ver/18/form/views/user
+END
+waiting.ejs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/interview_test/!svn/ver/25/form/views/user/waiting.ejs
+END
+addUser.ejs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/interview_test/!svn/ver/27/form/views/user/addUser.ejs
+END
+userList.ejs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/interview_test/!svn/ver/27/form/views/user/userList.ejs
+END
+userInf.ejs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/interview_test/!svn/ver/27/form/views/user/userInf.ejs
+END

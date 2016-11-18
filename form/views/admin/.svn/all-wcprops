@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/interview_test/!svn/ver/18/form/views/admin
+END
+register.ejs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/interview_test/!svn/ver/22/form/views/admin/register.ejs
+END
+adminList.ejs
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/interview_test/!svn/ver/26/form/views/admin/adminList.ejs
+END
+adminInf.ejs
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/interview_test/!svn/ver/27/form/views/admin/adminInf.ejs
+END
+login.ejs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/interview_test/!svn/ver/27/form/views/admin/login.ejs
+END
+setting.ejs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/interview_test/!svn/ver/27/form/views/admin/setting.ejs
+END

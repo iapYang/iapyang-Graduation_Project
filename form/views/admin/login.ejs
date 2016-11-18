@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles/materialize.css">
+    <style>
+        @font-face {
+          font-family: 'ENtxt';
+          src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.eot") format("eot");
+          src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.svg") format("svg");
+          src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.woff") format("woff");
+        }
+
+
+        *{
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+            border: 0;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: rgb(85, 75, 75);
+        }
+
+        .main {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .login {
+            width: 500px;
+            height: 250px;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            margin-top: -125px;
+            margin-left: -250px;
+            text-align: center;
+        }
+
+        p,input {
+            font-size: 24px;
+            font-family: ENtxt;
+        }
+
+        input {
+            margin-left: 10px;
+        }
+
+        i {
+            font-style: italic!important;
+            letter-spacing: .5px!important;
+            word-spacing: normal!important;
+            text-transform: uppercase!important;
+        }
+
+        /*span {
+            font-family: 'Material Icons';
+            font-size: 24px;
+            display: inline-block;
+            margin-top: 35px;
+            opacity: 0;
+        }*/
+    </style>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/TweenMax.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <img class="bg" src="/images/bg.jpg" alt="">
+        <div class="login">
+            <!-- <form method="post"> -->
+                <p>user name: <input id="name" type="text" name="name" value="<%=name%>" /></p>
+                <p>password: <input id="password" type="text" name="password" /></p>
+                <button class="signIn btn waves-effect waves-light left" type="submit">
+                    <i class="material-icons center">sign in</i>
+                </button>
+                <button class="visiter btn red accent-1 waves-effect waves-light center" type="submit">
+                    <i class="material-icons center">面试登记</i>
+                </button>
+                <button class="signUp btn waves-effect waves-light right" type="submit">
+                    <i class="material-icons center">sign up</i>
+                </button>
+            <!-- </form> -->
+        </div>
+    </div>
+
+    <script>
+        //bg resize
+        var $window = $(window);
+        var ww = $window.width();
+        var wh = $window.height();
+        var $signIn = $('.signIn');
+        var $visiter = $('.visiter');
+        var $signUp = $('.signUp');
+        var $username = $('#name');
+        var $psw = $('#password');
+        var unAvailable = false;
+        var pswAvailable = false;
+        var msg,stateNum,isAdmin,isSuperAdmin;
+        resizeAd(ww, wh);
+
+        $window.on('resize', function() {
+            ww = $window.width();
+            wh = $window.height();
+
+            if (typeof resizeAd == 'function') {
+                resizeAd(ww, wh);
+            }
+        });
+        function resizeAd(width, height){
+            w = (width / height) < (16 / 9) ? height * (16 / 9) : width;
+            TweenMax.set([$('.bg')], {
+                width: w,
+                height: w / (16 / 9),
+                marginLeft: -(w - width) / 2,
+                marginTop: -(w / (16 / 9) - height) / 2
+            });
+        }
+
+        function checkUN() {
+            var str = $username.val();
+
+            if(str == '') {
+                console.log('用户名不能为空');
+                unAvailable = false;
+                $username.addClass('invalid');
+                return false;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/admin/checkUN',
+                data: {
+                    name: str
+                },
+                dataType: "json",
+                success: function(data){
+                    msg = data.data;
+                    stateNum = data.state;
+                    console.log('username msg:'+msg);
+                    console.log('username stateNum:'+stateNum);
+                    if(stateNum == 222) {
+                        $username.removeClass('invalid');
+                        console.log('该用户名可用');
+                        unAvailable = true;
+                    }else {
+                        $username.addClass('invalid');
+                        unAvailable = false;
+                        console.log('该用户名不存在');
+                    }
+                }
+            });
+        }
+
+        function checkPSW() {
+            var str = $psw.val();
+
+            if(str == '') {
+                console.log('密码不能为空');
+                pswAvailable = false;
+                $psw.addClass('invalid');
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/admin/check',
+                data: {
+                    name: $('#name').val(),
+                    password: $('#password').val()
+                },
+                dataType: "json",
+                success: function(data){
+                    if(data.state == 444) {
+                        pswAvailable = true;
+                        isAdmin = data.isAdmin;
+                        isSuperAdmin = data.isSuperAdmin;
+                        $psw.removeClass('invalid');
+                        console.log('密码正确');
+                        console.log('isAdmin:'+isAdmin);
+                        console.log('isSuperAdmin:'+isSuperAdmin);
+                    }else {
+                        console.log('密码不正确');
+                        $psw.addClass('invalid');
+                    }
+                }
+            });
+        }
+
+        $username.on('blur', function(){
+            checkUN();
+        });
+
+        $psw.on('blur', function(){
+            checkPSW();
+        });
+
+        $signIn.on('click', function(){
+            checkUN();
+            checkPSW();
+
+            setTimeout(function(){
+                // console.log(isAdmin);
+                // console.log(isSuperAdmin);
+                if(unAvailable && pswAvailable) {
+                    if(isAdmin) {
+                        if(isSuperAdmin) {
+                            location.href='/admin/adminList';
+                        }else {
+                            location.href='/user/userList';
+                        }
+                    }else {
+                        location.href='/addUser';
+                    }
+
+                }
+            }, 500);
+        });
+
+        $signUp.on('click', function(){
+            location.href='/register';
+        });
+
+        $visiter.on('click', function(){
+            location.href='/addUser';
+        });
+    </script>
+</body>
+
+</html>

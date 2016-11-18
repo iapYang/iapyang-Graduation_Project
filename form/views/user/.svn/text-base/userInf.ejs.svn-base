@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>UserInf</title>
+    <link rel="stylesheet" type="text/css" href="/styles/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="/styles/materialize.css">
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <!-- <script type="text/javascript" src="/js/materialize.js"></script> -->
+    <!-- <script type="text/javascript" src="/js/sweetalert.min.js"></script> -->
+    <!-- <script type="text/javascript" src="/js/validator.min.js"></script> -->
+    <!-- <script type="text/javascript" src="/js/index.js"></script> -->
+    <style>
+        .top-container {
+          position: relative;
+          height: 451px;
+          overflow: hidden;
+          background-color: transparent;
+        }
+
+        .logo-bg {
+          width: 1920px;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          margin-left: -960px;
+        }
+
+        .logo {
+          width: 380px;
+          position: absolute;
+          top: 150px;
+          left: 50%;
+          margin-left: -190px;
+        }
+
+        .txt {
+          width: 250px;
+          position: absolute;
+          top: 250px;
+          left: 50%;
+          margin-left: -125px;
+        }
+
+        .content .row,.input-field,.content .detail {
+            margin-top: 0;
+        }
+
+        .content input {
+            height: 1rem;
+        }
+
+        textarea.materialize-textarea {
+            margin: 25px 0 0 0;
+        }
+
+        input[type=text]:disabled {
+            border-bottom: 1px solid #9e9e9e;
+        }
+
+        .input-field label {
+            color: #9e9e9e;
+        }
+
+        input[type=text]:disabled, input[type=text][readonly="readonly"], input[type=password]:disabled, input[type=password][readonly="readonly"], input[type=email]:disabled, input[type=email][readonly="readonly"], input[type=url]:disabled, input[type=url][readonly="readonly"], input[type=time]:disabled, input[type=time][readonly="readonly"], input[type=date]:disabled, input[type=date][readonly="readonly"], input[type=datetime-local]:disabled, input[type=datetime-local][readonly="readonly"], input[type=tel]:disabled, input[type=tel][readonly="readonly"], input[type=number]:disabled, input[type=number][readonly="readonly"], input[type=search]:disabled, input[type=search][readonly="readonly"], textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly="readonly"] {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+        }
+
+        input[type=text]:disabled + label, input[type=text][readonly="readonly"] + label, input[type=password]:disabled + label, input[type=password][readonly="readonly"] + label, input[type=email]:disabled + label, input[type=email][readonly="readonly"] + label, input[type=url]:disabled + label, input[type=url][readonly="readonly"] + label, input[type=time]:disabled + label, input[type=time][readonly="readonly"] + label, input[type=date]:disabled + label, input[type=date][readonly="readonly"] + label, input[type=datetime-local]:disabled + label, input[type=datetime-local][readonly="readonly"] + label, input[type=tel]:disabled + label, input[type=tel][readonly="readonly"] + label, input[type=number]:disabled + label, input[type=number][readonly="readonly"] + label, input[type=search]:disabled + label, input[type=search][readonly="readonly"] + label, textarea.materialize-textarea:disabled + label, textarea.materialize-textarea[readonly="readonly"] + label, [type="radio"]:disabled + label {
+            color: rgba(0, 0, 0, 1);
+        }
+
+        [type="radio"].with-gap:disabled:checked + label:before, [type="radio"].with-gap:disabled:checked + label:after {
+            /*background-color: rgba(0, 0, 0, 0.6);*/
+        }
+
+        .input-field label {
+            color: #000;
+        }
+    </style>
+</head>
+<% _.each(users, function(user) {%>
+<body>
+
+    <div class="top-container">
+        <img class="logo-bg" src="/images/logo-bg2.jpg" alt="">
+        <img class="logo" src="/images/logo.png" alt="">
+        <img class="txt" src="/images/txt.png" alt="">
+    </div>
+    <div class="content">
+        <!-- option1 -->
+        <!-- <div class="divider"></div> -->
+        <div class="section">
+            <span class="en-text">&nbsp;BASIC INFORMATION&nbsp;|</span><span class="zh-text">&nbsp;基本资料</span>
+        </div>
+        <!-- <form action="/user/addUser" method="post" class="option1"> -->
+            <div class="row option1">
+                <div class="input-field col s3">
+                    <input id="option1-name" disabled name="name" type="text" class="validate">
+                    <label for="option1-name"><span>Name</span></br><span><%=user.name%></span></label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="option1-male" type="radio" class="with-gap" disabled name="sex" />
+                    <label for="option1-male"><span>M</span></br><span>男</label>
+					<input id="option1-female" type="radio" class="with-gap" disabled name="sex" />
+      			    <label for="option1-female"><span>F</span></br><span>女</label>
+	            </div>
+	        <div class="input-field col s5">
+	          <input id="option1-birth" disabled name="birthDay" type="text" class="validate">
+	          <label for="option1-birth"><span>Age</span></br><span><%=user.birthDay%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input id="option1-nation" disabled name="nationality" type="text" class="validate">
+                    <label for="option1-nation"><span>Nationality</span></br><span><%=user.nationality%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option1-residence" name="residence" type="text" class="validate">
+                    <label for="option1-residence"><span>Registered Residence</span></br><span><%=user.residence%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option1-email" name="email" type="email" class="validate">
+                    <label for="option1-email"><span>E-mail Address</span></br><span><%=user.email%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option1-phone" name="phone" type="tel" class="validate">
+                    <label for="option1-phone"><span>Phone Number</span></br><span><%=user.phone%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option1-idnu" name="idNu" type="text" class="validate">
+                    <label for="option1-idnu"><span>ID NO.</span></br><span><%=user.idNu%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option1-address" name="nowAddress" type="text" class="validate">
+                    <label for="option1-address"><span>Address</span></br><span><%=user.nowAddress%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option1-position" name="positionApply" type="text" class="validate">
+                    <label for="option1-position"><span>Position Applying For</span></br><span><%=user.positionApply%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option1-exceptSal" name="exceptSalary" type="text" class="validate">
+                    <label for="option1-exceptSal"><span>Excepted Salary</span></br><span><%=user.exceptSalary%></span></label>
+                </div>
+            </div>
+
+            <!-- add date:2016-02-24 -->
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option1-workAge" name="workAge" type="text" class="validate">
+                    <label for="option1-workAge"><span>Work Experience</span></br><span><%=user.workAge%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option1-lastSalary" name="lastSalary" type="text" class="validate">
+                    <label for="option1-lastSalary"><span>Recent Job Salary</span></br><span><%=user.lastSalary%></span></label>
+                </div>
+            </div>
+            <!-- ///////分割线/////// -->
+
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option1-startDate" name="startDate" type="text" class="datepicker">
+                    <label for="option1-startDate"><span>Starting Date</span></br><span><%=user.startDate%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option1-registeredAdd" name="registeredAdd" type="text" class="datepicker">
+                    <label for="option1-registeredAdd"><span>Registered Address</span></br><span><%=user.registeredAdd%></span></label>
+                </div>
+            </div>
+        <!-- </form> -->
+        <!-- </div> -->
+        <!-- option2 -->
+        <div class="divider"></div>
+        <div class="section">
+            <span class="en-text">&nbsp;ADUCATIONAL BACKGROUND&nbsp;|</span><span class="zh-text">&nbsp;教育背景</span>
+        </div>
+        <!-- <form action="/user/addUser" method="post" class="option2"> -->
+            <div class="row option2">
+                <div class="input-field col s2">
+                    <input disabled id="option2-from" name="option2-from" type="text" class="datepicker">
+                    <label for="option2-from"><span>From</span></br><span><%=user.school_from%></span></label>
+                </div>
+                <div class="input-field col s2 offset-s1">
+                    <input disabled id="option2-to" name="option2-to" type="text" class="datepicker">
+                    <label for="option2-to"><span>To</span></br><span><%=user.school_to%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option2-major" name="major" type="text" class="validate">
+                    <label for="option2-major"><span>Major</span></br><span><%=user.major%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option2-school" name="school" type="text" class="validate">
+                    <label for="option2-school"><span>Graduated From</span></br><span><%=user.school%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option2-diploma" name="diploma" type="text" class="validate">
+                    <label for="option2-diploma"><span>Diploma</span></br><span><%=user.diploma%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option2-cet" name="cet" type="text" class="validate">
+                    <label for="option2-cet"><span>English</span></br><span><%=user.cet%></span></label>
+                </div>
+            </div>
+        <!-- </form> -->
+        <!-- option3 -->
+        <div class="divider"></div>
+        <div class="section">
+            <span class="en-text">&nbsp;WORK EXPERIENCE&nbsp;|</span><span class="zh-text">&nbsp;工作经历</span>
+        </div>
+        <!-- <form action="/user/addUser" method="post" class="option3"> -->
+            <div class="row option3">
+                <div class="input-field col s2">
+                    <input disabled id="option3-from" name="option3-from" type="text" class="datepicker">
+                    <label for="option3-from"><span>From</span></br><span><%=user.work_from%></span></label>
+                </div>
+                <div class="input-field col s2 offset-s1">
+                    <input disabled id="option3-to" name="option3-to" type="text" class="datepicker">
+                    <label for="option3-to"><span>To</span></br><span><%=user.work_to%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option3-salary" name="salary" type="text" class="validate">
+                    <label for="option3-salary"><span>Salary</span></br><span><%=user.salary%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option3-company" name="company" type="text" class="validate">
+                    <label for="option3-company"><span>Company Name</span></br><span><%=user.company%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option3-position" name="position" type="text" class="validate">
+                    <label for="option3-position"><span>Position</span></br><span><%=user.position%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option3-address" name="address" type="text" class="validate">
+                    <label for="option3-address"><span>Address</span></br><span><%=user.address%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option3-super" name="recommender" type="text" class="validate">
+                    <label for="option3-super"><span>Supervisor's Name And Position</span></br><span><%=user.recommender%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea disabled id="option3-reason" name="reason" type="text" class="materialize-textarea"></textarea>
+                    <label for="option3-reason"><span>Reason for leaving</span></br><span><%=user.reason%></span></label>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="row option3">
+                <div class="input-field col s2">
+                    <input id="option3-from2" name="option3-from2" type="text" class="option3Input datepicker">
+                    <label for="option3-from2"><span>From</span></br><span><%=user.work_from2%></span></label>
+                </div>
+                <div class="input-field col s2 offset-s1">
+                    <input id="option3-to2" name="option3-to2" type="text" class="option3Input datepicker">
+                    <label for="option3-to2"><span>To</span></br><span><%=user.work_to2%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input id="option3-salary2" name="salary2" type="text" class="option3Input validate">
+                    <label for="option3-salary2"><span>Salary</span></br><span><%=user.salary2%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input id="option3-company2" name="company2" type="text" class="option3Input validate">
+                    <label for="option3-company2"><span>Company Name</span></br><span><%=user.company2%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input id="option3-position2" name="position2" type="text" class="option3Input validate">
+                    <label for="option3-position2"><span>Position</span></br><span><%=user.position2%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input id="option3-address2" name="address2" type="text" class="option3Input validate">
+                    <label for="option3-address2"><span>Address</span></br><span><%=user.address2%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input id="option3-super2" name="recommender2" type="text" class="option3Input validate">
+                    <label for="option3-super2"><span>Supervisor's Name And Position</span></br><span><%=user.recommender2%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="option3-reason2" name="reason2" type="text" class="option3Input materialize-textarea"></textarea>
+                    <label for="option3-reason2"><span>Reason for leaving</span></br><span><%=user.reason2%></span></label>
+                </div>
+            </div>
+        <!-- </form> -->
+        <!-- option4 -->
+        <div class="divider"></div>
+        <div class="section">
+            <span class="en-text">&nbsp;SPECIAL SKILLS&nbsp;|</span><span class="zh-text">&nbsp;专长</span>
+        </div>
+        <!-- <form action="/user/addUser" method="post"> -->
+            <div class="row option4">
+                <div class="input-field col s5">
+                    <input disabled id="option4-skill1" name="skill1" type="text" class="validate">
+                    <label for="option4-skill1">1</br><span><%=user.skill1%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option4-skill2" name="skill2" type="text" class="validate">
+                    <label for="option4-skill2">2</br><span><%=user.skill2%></span></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input disabled id="option4-skill3" name="skill3" type="text" class="validate">
+                    <label for="option4-skill3">3</br><span><%=user.skill3%></span></label>
+                </div>
+                <div class="input-field col s5 offset-s1">
+                    <input disabled id="option4-skill4" name="skill4" type="text" class="validate">
+                    <label for="option4-skill4">4</br><span><%=user.skill4%></span></label>
+                </div>
+            </div>
+        <!-- </form> -->
+        <!-- option5 -->
+        <div class="divider"></div>
+        <div class="section">
+            <span class="en-text">&nbsp;HOW DID YOU KNOW OUR HIRING&nbsp;|</span><span class="zh-text">&nbsp;你是如何了解我们的招聘？</span>
+        </div>
+        <!-- <form action="/user/addUser" method="post" class="option5"> -->
+            <div class="row option5">
+                <div class="input-field col s2">
+                    <input disabled type="radio" name="knowRoute" value="1" class="with-gap" id="option5-site" checked="<%=user.knowRoute%>=='1'?checked:none"/>
+                    <label for="option5-site"><span>Job Sites</span></br><span>招聘网站</span></label>
+                </div>
+                <div class="input-field col s3">
+                    <input disabled type="radio" name="knowRoute" value="2" class="with-gap" id="option5-referee" checked="<%=user.knowRoute%>=='2'?checked:none"/>
+                    <label for="option5-referee"><span>Recommendation,Referee</span></br><span>朋友推荐，推荐人</span></label>
+                </div>
+                <div class="input-field col s2">
+                    <input disabled type="radio" name="knowRoute" value="3" class="with-gap" id="option5-other" checked="<%=user.knowRoute%>=='3'?checked:none"/>
+                    <label for="option5-other"><span>Others</span></br><span>其他选择</span></label>
+                </div>
+                <div class="input-field col s3 detail">
+                    <input disabled="disabled" name="detail" id="option5-cont" type="text" class="validate">
+                    <label for="option5-cont">Details</br><span><%=user.detail%></span></label>
+                </div>
+            </div>
+    </div>
+
+
+    <script type="text/javascript">
+        if('<%=user.sex%>'=='男'){
+            $('#option1-male').attr('checked','checked');
+        }
+        if('<%=user.sex%>'=='女'){
+            $('#option1-female').attr('checked','checked');
+        }
+        $('.top-container').on('click', function(){
+            // if(<%=admin.isAdmin%>==1){
+            //     location.href = '/user/userList';
+            // }else {
+            //     location.href = '/user/addUser';
+            // }
+            window.history.go(-1);
+        });
+    </script>
+</body>
+<% }) %>
+</html>

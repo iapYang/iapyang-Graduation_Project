@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/interview_test/!svn/ver/18/form/tasks/register
+END
+buildProd.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/interview_test/!svn/ver/18/form/tasks/register/buildProd.js
+END
+default.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/interview_test/!svn/ver/18/form/tasks/register/default.js
+END
+prod.js
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/interview_test/!svn/ver/18/form/tasks/register/prod.js
+END
+linkAssetsBuildProd.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/interview_test/!svn/ver/18/form/tasks/register/linkAssetsBuildProd.js
+END
+compileAssets.js
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/interview_test/!svn/ver/18/form/tasks/register/compileAssets.js
+END
+build.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/interview_test/!svn/ver/18/form/tasks/register/build.js
+END
+syncAssets.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/interview_test/!svn/ver/18/form/tasks/register/syncAssets.js
+END
+linkAssets.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/interview_test/!svn/ver/18/form/tasks/register/linkAssets.js
+END
+linkAssetsBuild.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/interview_test/!svn/ver/18/form/tasks/register/linkAssetsBuild.js
+END

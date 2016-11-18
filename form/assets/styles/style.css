@@ -1,0 +1,196 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+body {
+     overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'ENtxt';
+  /*font-style: normal;*/
+  /*font-weight: 400;*/
+  /*src: url("../font/txt/SourceHanSansCN-Regular-Alphabetic.eot") format("eot");
+  src: url("../font/txt/SourceHanSansCN-Regular-Alphabetic.svg") format("svg");
+  src: url("../font/txt/SourceHanSansCN-Regular-Alphabetic.woff") format("woff");*/
+  src: url("../font/txt/SourceHanSansCN-Medium-Alphabetic.eot") format("eot");
+  src: url("../font/txt/SourceHanSansCN-Medium-Alphabetic.svg") format("svg");
+  src: url("../font/txt/SourceHanSansCN-Medium-Alphabetic.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'ZHtxt';
+  /*font-style: normal;*/
+  /*font-weight: 400;*/
+  src: url("../font/txt/SourceHanSansCN-Medium-Alphabetic.eot") format("eot");
+  src: url("../font/txt/SourceHanSansCN-Medium-Alphabetic.svg") format("svg");
+  src: url("../font/txt/SourceHanSansCN-Medium-Alphabetic.woff") format("woff");
+}
+
+.top-container {
+  position: relative;
+  height: 451px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.logo-bg {
+  width: 1920px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -960px;
+}
+
+.logo {
+  width: 380px;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  margin-left: -190px;
+}
+
+.txt {
+  width: 250px;
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  margin-left: -125px;
+}
+
+.container .right {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.content {
+  width: 85%;
+  height: 100%;
+  background-color: #fff;
+  margin: 100px auto 0;
+}
+
+.en-text {
+  font-family: ENtxt;
+  letter-spacing: 4px;
+  margin-left: -3px;
+}
+
+/*.en-text2 {
+  letter-spacing: 3px;
+}*/
+
+.content .row {
+  margin-top: 10px;
+}
+.content .divider {
+  height: 50px;
+  background-color: #fff;
+}
+.content .section {
+  width: 100%;
+  /*color: white;*/
+  /*background-color: #cd487c;*/
+  font-size: 30px;
+}
+
+.selectReg {
+  margin-top: 30px;
+}
+ 
+/*.content .section:after{
+    content: '';
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}*/
+
+/*.content .en-text {
+    display: inline-block;
+    vertical-align: middle;
+}*/
+
+.content .zh-text {
+  font-family: ZHtxt;
+  letter-spacing: 4px;
+  /*display: inline-block;
+  vertical-align: middle;*/
+}
+.content input {
+  height: 1.3rem;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
+  margin: 40px 0 15px 0;
+}
+.content textarea.materialize-textarea {
+  min-height: 2rem;
+}
+.content textarea {
+  height: 2rem;
+}
+.content .input-field label.active {
+  transform: translateY(-50%);
+}
+.content .option1 [type="radio"] + label:after, .content .option1 [type="radio"] + label:before {
+  width: 20px;
+  height: 20px;
+  top: 18px !important;
+}
+.content textarea.materialize-textarea {
+  min-height: 1.3rem;
+}
+textarea.materialize-textarea {
+  padding: 0;
+  margin: 40px 0 0 0;
+}
+.skilllab {
+  top: 2rem !important;
+}
+.content .option5 [type="radio"] + label:after, .content .option5 [type="radio"] + label:before {
+  width: 20px;
+  height: 20px;
+  top: 18px !important;
+}
+.content .detail {
+  margin-top: 15px;
+}
+.content [type="checkbox"] + label:after, .content [type="checkbox"] + label:before {
+  top: 25px !important;
+}
+.content .td-first {
+  padding-bottom: 0;
+}
+.content .td-first .row {
+  margin-bottom: 0;
+}
+.content .td-second .s12 span {
+  font-size: 30px;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Material Icons"), local("MaterialIcons-Regular"), url("../font/material-design-icons/Material-Icons.woff") format("woff");
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/interview_test/!svn/ver/18/form/config
+END
+cors.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/interview_test/!svn/ver/18/form/config/cors.js
+END
+policies.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/interview_test/!svn/ver/25/form/config/policies.js
+END
+sockets.js
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/interview_test/!svn/ver/18/form/config/sockets.js
+END
+bootstrap.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/interview_test/!svn/ver/18/form/config/bootstrap.js
+END
+http.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/interview_test/!svn/ver/18/form/config/http.js
+END
+i18n.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/interview_test/!svn/ver/18/form/config/i18n.js
+END
+log.js
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/interview_test/!svn/ver/18/form/config/log.js
+END
+routes.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/interview_test/!svn/ver/26/form/config/routes.js
+END
+connections.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/interview_test/!svn/ver/18/form/config/connections.js
+END
+globals.js
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/interview_test/!svn/ver/18/form/config/globals.js
+END
+models.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/interview_test/!svn/ver/18/form/config/models.js
+END
+session.js
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/interview_test/!svn/ver/18/form/config/session.js
+END
+blueprints.js
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/interview_test/!svn/ver/18/form/config/blueprints.js
+END
+local.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/interview_test/!svn/ver/18/form/config/local.js
+END
+csrf.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/interview_test/!svn/ver/18/form/config/csrf.js
+END
+views.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/interview_test/!svn/ver/18/form/config/views.js
+END

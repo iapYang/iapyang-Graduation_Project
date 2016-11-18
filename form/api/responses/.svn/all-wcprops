@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/interview_test/!svn/ver/18/form/api/responses
+END
+ok.js
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/interview_test/!svn/ver/18/form/api/responses/ok.js
+END
+forbidden.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/interview_test/!svn/ver/18/form/api/responses/forbidden.js
+END
+notFound.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/interview_test/!svn/ver/18/form/api/responses/notFound.js
+END
+badRequest.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/interview_test/!svn/ver/18/form/api/responses/badRequest.js
+END
+serverError.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/interview_test/!svn/ver/18/form/api/responses/serverError.js
+END

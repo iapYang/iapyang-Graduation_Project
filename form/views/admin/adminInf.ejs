@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>AdminInf</title>
+    <link rel="stylesheet" type="text/css" href="/styles/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="/styles/materialize.css">
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <script type="text/javascript" src="/js/jquery.js"></script>
+
+    <style>
+        .top-container {
+          position: relative;
+          height: 451px;
+          overflow: hidden;
+          background-color: transparent;
+        }
+
+        .logo-bg {
+          width: 1920px;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          margin-left: -960px;
+        }
+
+        .logo {
+          width: 380px;
+          position: absolute;
+          top: 150px;
+          left: 50%;
+          margin-left: -190px;
+        }
+
+        .txt {
+          width: 250px;
+          position: absolute;
+          top: 250px;
+          left: 50%;
+          margin-left: -125px;
+        }
+
+        .option3 {
+            text-align: center;
+        }
+
+        .modify {
+            margin-left: 100px;
+        }
+
+        [type="radio"] + label:before, [type="radio"] + label:after {
+            top: 15px;
+        }
+    </style>
+</head>
+<% _.each(users, function(user) {%>
+<body>
+
+    <div class="top-container">
+        <img class="logo-bg" src="/images/logo-bg2.jpg" alt="">
+        <img class="logo" src="/images/logo.png" alt="">
+        <img class="txt" src="/images/txt.png" alt="">
+    </div>
+    <div class="content">
+        <div class="section">
+            <span class="en-text">&nbsp;BASIC INFORMATION&nbsp;|</span><span class="zh-text">&nbsp;基本资料</span>
+        </div>
+            <div class="row option1">
+                <div class="input-field col s2">
+                    <input id="option1-name" disabled name="name" type="text" class="validate">
+                    <label for="option1-name"><span>Name</span></br><span><%=user.name%></span></label>
+                </div>
+                <div class="input-field col s2 offset-s1">
+                    <input id="option1-isAdmin" type="radio" class="with-gap adminRadio" disabled name="isAdmin" value="1" />
+                    <label for="option1-isAdmin"><span>isAdmin</span></br><span>是</label>
+					<input id="option1-notAdmin" type="radio" class="with-gap adminRadio" disabled name="isAdmin" value="0" />
+      			    <label for="option1-notAdmin"><span>notAdmin</span></br><span>否</label>
+	            </div>
+                <div class="input-field col s3 offset-s2">
+                    <input id="option1-isSuperAdmin" type="radio" class="with-gap ignore" disabled value="1" name="isSuperAdmin" />
+                    <label for="option1-isSuperAdmin"><span>isSuperAdmin</span></br><span>是</label>
+					<input id="option1-notSuperAdmin" type="radio" class="with-gap ignore" disabled value="0" name="isSuperAdmin" />
+      			    <label for="option1-notSuperAdmin"><span>notSuperAdmin</span></br><span>否</label>
+	            </div>
+            </div>
+
+            <div class="row option2">
+                <div class="input-field col s5">
+                    <input id="option2-email" disabled name="email" type="text" class="validate">
+                    <label for="option2-email"><span>Email</span></br><span><%=user.email%></span></label>
+                </div>
+            </div>
+
+            <div class="row center option3">
+                <button class="cancel btn waves-effect waves-light" type="submit">Cancel
+                    <i class="material-icons right">send</i>
+                </button>
+                <button class="modify btn waves-effect waves-light" type="submit" onclick="modAdmin(<%=user.id%>)">Modify
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+    </div>
+
+
+    <script type="text/javascript">
+        var $topC = $('.top-container'),
+            $cancel = $('.cancel'),
+            $modify = $('.modify'),
+            i = 0;
+
+        //init radio(AdminOrNot)
+        if('<%=user.isAdmin%>'==1){
+            console.log('isAdmin');
+            $('#option1-isAdmin').attr('checked','checked');
+        }
+        if('<%=user.isAdmin%>'==0){
+            console.log('notAdmin');
+            $('#option1-notAdmin').attr('checked','checked');
+        }
+        //init radio(SuperAdminOrNotSuperAdmin)
+        if('<%=user.isSuperAdmin%>'==1){
+            console.log('isSuperAdmin');
+            $('#option1-isSuperAdmin').attr('checked','checked');
+        }
+        if('<%=user.isSuperAdmin%>'==0){
+            console.log('notSuperAdmin');
+            $('#option1-notSuperAdmin').attr('checked','checked');
+        }
+
+        //back home
+        // $topC.on('click', function(){
+        //     if(<%=admin.isSuperAdmin%>==1){
+        //         location.href = '/admin/adminList';
+        //     }
+        // });
+
+        //go back
+        $cancel.on('click', function(){
+            window.history.go(-1);
+        });
+
+        //ModifyAndSubmit
+        function modAdmin(id) {
+            // $('input:not(".ignore")').removeAttr('disabled');
+            $('.adminRadio').removeAttr('disabled');
+            $('.modify').html('Submit<i class="material-icons right">send</i>');
+            $modify.addClass('red accent-1');
+            ++i;
+
+            if(i > 1) {
+                swal({
+                  title: "Are you sure?",
+                  text: "Are you sure that you want to modify this admin?",
+                  type: "warning",
+                  showCancelButton: true,
+                  closeOnConfirm: false,
+                  confirmButtonText: "Yes, modify it!",
+                  confirmButtonColor: "#ec6c62"
+                }, function() {
+                  $.ajax({
+                      type: 'POST',
+                      url: '/admin/modAdmin',
+                      data: {
+                        id: id,
+                        // name: $('[name="name"]').val(),
+                        // isSuperAdmin: $('[name="isSuperAdmin"]:checked').val(),
+                        // email: $('[name="email"]').val(),
+                        isAdmin: $('[name="isAdmin"]:checked').val(),
+                      }
+                    })
+                    .done(function(data) {
+                      swal({
+                        title: "Modified!",
+                        text: "The admin has been modified!",
+                        timer: 2000,
+                        showConfirmButton: false
+                      });
+                      setTimeout(function() {
+                        location.href = '/admin/adminList';
+                      }, 2000);
+                    })
+                    .error(function(data) {
+                      console.log(data);
+                      swal("DB error", "Something went wrong!", "error");
+                    });
+                });
+            }
+        }
+    </script>
+</body>
+<% }) %>
+</html>

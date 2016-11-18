@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AdminList</title>
+  <link rel="stylesheet" type="text/css" href="/styles/sweetalert.css">
+  <link rel="stylesheet" type="text/css" href="/styles/materialize.css">
+  <style>
+    /* Styles included inline since you'll probably be deleting or replacing this page anyway */
+    /*html,body{text-align:left;font-size:1em}html,body,img,form,textarea,input,fieldset,div,p,div,ul,li,ol,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,code{margin:0;padding:0}ul,li{list-style:none}img{display:block}a img{border:0}a{text-decoration:none;font-weight:normal;font-family:inherit}*:active,*:focus{outline:0;-moz-outline-style:none}h1,h2,h3,h4,h5,h6,h7{font-weight:normal;font-size:1em}.clearfix:after{clear:both;content:".";display:block;font-size:0;height:0;line-height:0;visibility:hidden}.page .ocean{background:url('http://sailsjs.com/images/waves.png') #0c8da0 no-repeat center 0;height:315px}.page .ocean img{margin-right:auto;margin-left:auto}.page .waves{display:block;padding-top:25px;margin-right:auto;margin-left:auto}.page .main{display:block;margin-top:90px}.page .logo{width:150px;margin-top:3.5em;margin-left:auto;margin-right:auto}.page .fishy{display:block;padding-top:100px}.page .help{padding-top:2em}.page h1{font-family:"Open Sans","Myriad Pro",Arial,sans-serif;font-weight:bold;font-size:1.7em;color:#001c20;text-align:center}.page h2{font-family:"Open Sans","Myriad Pro",Arial,sans-serif;font-weight:300;font-size:1.5em;color:#001c20;text-align:center}.page p{font-family:"Open Sans","Myriad Pro",Arial,sans-serif;font-size:1.25em;color:#001c20;text-align:center}.page a{color:#118798}.page a:hover{color:#b1eef7}*/
+    /*@font-face {
+      font-family: 'ENtxt';
+      src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.eot") format("eot");
+      src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.svg") format("svg");
+      src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.woff") format("woff");
+    }
+
+    @font-face {
+      font-family: 'ZHtxt';
+      src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.eot") format("eot");
+      src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.svg") format("svg");
+      src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.woff") format("woff");
+    }*/
+
+    .menu1 {
+        font-size: 3rem!important;
+    }
+
+    .dropdown-button {
+        cursor: pointer;
+    }
+
+    #dropdown1,#dropdown2 {
+        top: 64px!important;
+        min-width: 116px;
+        /*background-color: rgba(174,49,45,0.7);*/
+    }
+
+    .topTxt {
+        font-size: 30px;
+    }
+
+    .detail,.delete {
+        display: inline-flex;
+        padding: 0 10px;
+    }
+
+    .delete {
+        margin-left: 20px;
+    }
+
+    .material-icons {
+        font-size: 44px;
+    }
+
+    td,th {
+        width: 1%;
+        text-align: center;
+    }
+
+    .pagination {
+      margin-top: 30px;
+    }
+
+    .pagination li i {
+        font-size: 1rem;
+    }
+
+    .add {
+        position: fixed;
+        top: auto;
+        right: auto;
+        left: 0;
+        bottom: 0;
+    }
+
+    .signin {
+      font-size: 15px;
+    }
+  </style>
+  <script type="text/javascript" src="/js/jquery.js"></script>
+</head>
+
+<body>
+  <div class="page">
+    <div class="main">
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="/logOut">Sign Out<i class="material-icons right">open_in_new</i></a></li>
+            <li><a href="">Setting<i class="material-icons right">settings</i></a></li>
+            <!-- <li class="divider"></li>
+            <li><a href="#!">three</a></li> -->
+        </ul>
+        <ul id="dropdown2" class="dropdown-content">
+            <li class="adminList"><a href="/admin/adminList">Admin List</a></li>
+            <li class="userList"><a href="/user/userList">User List</a></li>
+            <li class="addUser"><a href="/addUser">Add User</a></li>
+            <!-- <li class="divider"></li>
+            <li><a href="">Others</a></li> -->
+        </ul>
+        <nav>
+            <div class="nav-wrapper center">
+                <a class="dropdown-button" data-activates="dropdown2"><i class="menu1 material-icons left">toc</i></a>
+                <span class="topTxt">
+                    <span class="en-text">&nbsp;Admin LIST&nbsp;|</span>
+                    <span class="zh-text">&nbsp;管理员列表</span>
+                </span>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#"><i class="material-icons">search</i></a></li>
+                    <!-- <li><a href="#"><i class="material-icons">view_module</i></a></li>
+                    <li><a href="#"><i class="material-icons">refresh</i></a></li>
+                    <li><a href="#"><i class="material-icons">more_vert</i></a></li> -->
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Sign In:&nbsp;<%=admin.name%>&nbsp;<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+      <div class="user-container">
+        <table class="striped">
+          <thead>
+            <tr>
+              <th data-field="name">姓名</th>
+              <th data-field="email">邮箱</th>
+              <th data-field="isAdmin">是否是管理员</th>
+              <th data-field="isSuperAdmin">是否是超级管理员</th>
+              <th data-field="createdAt">创建时间</th>
+              <th data-field="detail">操作</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% _.each(users, function(user) {%>
+              <tr>
+                <td><%=user.name%></td>
+                <td><%=user.email%></td>
+                <td><%=user.isAdmin%></td>
+                <td><%=user.isSuperAdmin%></td>
+                <td><%=user.createdAt%></td>
+                <td>
+                    <button class="detail btn center waves-effect waves-light" onclick="window.location.href='/admin/adminInf?id=<%=user.id%>'">
+                        <i class="material-icons">info</i>
+                    </button>
+                    <button class="delete btn center red lighten-1 waves-effect waves-light" onclick="delAmin(<%=user.id%>)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+        <div class="pagination">
+            <ul class="pagination center">
+                <li class="chevron_left waves-effect"><a ><i class="material-icons">chevron_left</i></a></li>
+                <% for(var i=0; i<number; i++) {%>
+                    <li class="index waves-effect"><a><%= i+1 %></a></li>
+                <% } %>
+                <li class="chevron_right waves-effect"><a ><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
+
+        <button class="add btn waves-effect waves-light left">Add
+            <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+      var ri = 0;
+      var $add = $('.add'),
+          $delete = $('.delete'),
+          $adminList = $('.adminList'),
+          $userList = $('.userList'),
+          $addUser = $('.addUser');
+
+      if(<%= admin.isAdmin%>==1 && <%= admin.isSuperAdmin%>==0){
+          $adminList.css('display','none');
+      }
+    //   if(<%= admin.isSuperAdmin%>==1){
+    //       $userList.css('display','block');
+    //   }
+
+
+      if(isNaN(<%= index%>)) $('.index').eq(0).addClass('active');
+      $('.index').eq(<%= index-1 %>).addClass('active');
+
+      $('.pagination .index').on('click', function(){
+          location.href='/admin/adminList?index='+$(this).index()+'';
+      });
+
+      $('.chevron_left').on('click', function(){
+          if(isNaN(<%= index%>) || <%= index %>==1){
+              return;
+          }else {
+              location.href='/admin/adminList?index='+<%= index-1 %>+'';
+          }
+      });
+
+      $('.chevron_right').on('click', function(){
+          if(<%= index %> == Math.ceil(<%= number %>) || typeof(<%= index%>) == "undefined"){
+              return;
+          }else if(isNaN(<%= index%>)){
+              ri = 2;
+              location.href='/admin/adminList?index='+ri+'';
+          }else {
+              ri = <%= index %> + 1;
+              location.href='/admin/adminList?index='+ri+'';
+          }
+      });
+
+      $add.on('click', function(){
+          location.href = '/register';
+      });
+
+      function delAmin(id) {
+          swal({
+            title: "Are you sure?",
+            text: "Are you sure that you want to delete this admin?",
+            type: "warning",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonText: "Yes, delete it!",
+            confirmButtonColor: "#ec6c62"
+        }, function() {
+            $.ajax({
+                type: 'POST',
+                url: '/admin/delAdmin',
+                data: {
+                    id: id,
+                }
+            })
+            .done(function(data) {
+                swal({
+                    title: "Deleted!",
+                    text: "The admin has been deleted!",
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+                setTimeout(function(){
+                    location.href='/admin/adminList';
+                }, 1000);
+            })
+            .error(function(data) {
+                console.log(data);
+                swal("DB error", "Something went wrong!", "error");
+            });
+        });
+      }
+  </script>
+</body>
+
+</html>

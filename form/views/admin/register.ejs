@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Register</title>
+    <link rel="stylesheet" href="/styles/materialize.css">
+    <style>
+        @font-face {
+          font-family: 'ENtxt';
+          src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.eot") format("eot");
+          src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.svg") format("svg");
+          src: url("/font/txt/SourceHanSansCN-Medium-Alphabetic.woff") format("woff");
+        }
+
+
+        *{
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+            border: 0;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: rgb(85, 75, 75);
+        }
+
+        .main {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .register {
+            width: 500px;
+            height: 375px;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            margin-top: -187.5px;
+            margin-left: -250px;
+            text-align: center;
+        }
+
+        p,input {
+            font-size: 24px;
+            font-family: ENtxt;
+        }
+
+        input {
+            margin-left: 10px;
+        }
+
+        /*span {
+            font-family: 'Material Icons';
+            font-size: 24px;
+            display: inline-block;
+            margin-top: 35px;
+            opacity: 0;
+        }*/
+    </style>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/TweenMax.js"></script>
+</head>
+
+<body>
+    <div class="main">
+        <img class="bg" src="/images/bg.jpg" alt="">
+        <div class="register">
+            <p>email address: <input id="email" type="text" name="email" /></p>
+            <p>user name: <input id="name" type="text" name="name" /></p>
+            <p>password: <input id="password" type="text" name="password" placeholder="以字母开头，长度在6~18之间，只能包含字母、数字和下划线" /></p>
+            <button class="cancel btn waves-effect waves-light left" type="submit">
+                <i class="material-icons center">Cancel</i>
+            </button>
+            <button class="submit btn waves-effect waves-light right" type="submit">
+                <i class="material-icons center">Sign Up</i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        //bg resize
+        var $window = $(window),
+            ww = $window.width(),
+            wh = $window.height(),
+            $email = $('#email'),
+            emAvailable = false,
+            $username = $('#name'),
+            unAvailable = false,
+            $psw = $('#password'),
+            pswAvailable = false,
+            $submit = $('.submit'),
+            $cancel = $('.cancel'),
+            msg = '',
+            stateNum = 0;
+
+        resizeAd(ww, wh);
+
+        $window.on('resize', function() {
+            ww = $window.width();
+            wh = $window.height();
+
+            if (typeof resizeAd == 'function') {
+                resizeAd(ww, wh);
+            }
+        });
+        function resizeAd(width, height){
+            w = (width / height) < (16 / 9) ? height * (16 / 9) : width;
+            TweenMax.set([$('.bg')], {
+                width: w,
+                height: w / (16 / 9),
+                marginLeft: -(w - width) / 2,
+                marginTop: -(w / (16 / 9) - height) / 2
+            });
+        }
+
+        function checkEM() {
+            var reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
+                str = $email.val();
+
+            if(str == '') {
+                console.log('邮箱不能为空');
+                emAvailable = false;
+                $email.addClass('invalid');
+                return false;
+            }
+            if(str != '' && !reg.test(str)) {
+                console.log('邮箱格式不正确');
+                emAvailable = false;
+                $email.addClass('invalid');
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/admin/checkEM',
+                data: {
+                    email: str
+                },
+                dataType: "json",
+                success: function(data){
+                    msg = data.data;
+                    stateNum = data.state;
+                    console.log('email msg:'+msg);
+                    console.log('email stateNum:'+stateNum);
+                    if(stateNum == 555) {
+                        $email.removeClass('invalid');
+                        emAvailable = true;
+                    }else {
+                        emAvailable = false;
+                        $email.addClass('invalid');
+                    }
+                }
+            });
+        }
+
+        function checkUN() {
+            var str = $username.val();
+
+            if(str == '') {
+                console.log('用户名不能为空');
+                unAvailable = false;
+                $username.addClass('invalid');
+                return false;
+            }
+            // if(stateNum == 555){
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/checkUN',
+                    data: {
+                        name: str
+                    },
+                    dataType: "json",
+                    success: function(data){
+                        msg = data.data;
+                        stateNum = data.state;
+                        console.log('username msg:'+msg);
+                        console.log('username stateNum:'+stateNum);
+                        if(stateNum == 122) {
+                            $username.removeClass('invalid');
+                            unAvailable = true;
+                        }else {
+                            $username.addClass('invalid');
+                            unAvailable = false;
+                            console.log('该用户名已被使用过');
+                        }
+                    }
+                });
+            // }else {
+                // console.log('该用户名已被使用过');
+            // }
+        }
+
+        function checkPSW() {
+            var reg = /^[a-zA-Z]\w{5,17}$/,
+                str = $psw.val();
+
+            if(str == '') {
+                console.log('密码不能为空');
+                pswAvailable = false;
+                $psw.addClass('invalid');
+                return false;
+            }
+            if(str != '' && !reg.test(str)) {
+                console.log('密码格式不正确');
+                pswAvailable = false;
+                $psw.addClass('invalid');
+                return false;
+            }
+            pswAvailable = true;
+            $psw.removeClass('invalid');
+            console.log('密码可用');
+        }
+
+        $email.on('blur', function(){
+            checkEM();
+        });
+
+        $username.on('blur', function(){
+            checkUN();
+        });
+
+        $psw.on('blur', function(){
+            checkPSW();
+        });
+
+        $cancel.on('click', function(){
+            window.history.go(-1);
+        });
+
+        $submit.on('click', function(){
+            console.log('msg:'+msg);
+            console.log('stateNum:'+stateNum);
+
+            checkEM();
+            checkUN();
+            checkPSW();
+
+            console.log("emAvailable:"+emAvailable);
+            console.log("unAvailable:"+unAvailable);
+            console.log("pswAvailable:"+pswAvailable);
+
+            setTimeout(function(){
+                if(emAvailable && unAvailable && pswAvailable) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/admin/signUp',
+                        data: {
+                            name: $('#name').val(),
+                            password: $('#password').val(),
+                            email: $('#email').val()
+                        },
+                        dataType: "json",
+                        success: function(data){
+                            msg = data.data;
+                            stateNum = data.state;
+                            console.log(msg);
+                            console.log(stateNum);
+                            if(stateNum == 777){
+                                location.href='/admin/login?name='+$('#name').val()+'';
+                            }
+                        }
+                    });
+                }
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>
